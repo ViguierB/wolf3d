@@ -1,0 +1,24 @@
+/*
+** error.c for wold3d in /home/benji_epitech/C_Graph_Prog/wolf3d
+** 
+** Made by Benjamin Viguier
+** Login   <benjamin.viguier@epitech.eu>
+** 
+** Started on  Mon Dec 19 16:27:19 2016 Benjamin Viguier
+** Last update Mon Dec 19 16:30:00 2016 Benjamin Viguier
+*/
+
+#include "error.h"
+
+t_err_msg	msg_tab[] =
+  {
+    {-1, "No more Memory avaible"},
+    {-2, "Cannot open : "}
+  };
+
+int	on_error(int error_code, char *more)
+{
+int	i;
+
+
+}

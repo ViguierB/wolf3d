@@ -1,0 +1,23 @@
+##
+## depend.mk for my_printf in /home/benji_epitech/System_Unix/PSU_2016_my_printf
+## 
+## Made by Benjamin Viguier
+## Login   <benjamin.viguier@epitech.eu>
+## 
+## Started on  Wed Nov  9 17:16:44 2016 Benjamin Viguier
+## Last update Fri Dec  2 02:22:17 2016 Benjamin Viguier
+##
+
+CC		=	gcc
+
+DEBUG		=	true
+
+WALL		=	true
+
+ifeq	($(WALL),true)
+ CFLAGS		+=	-W -Wall -Werror
+endif
+
+ifeq	($(DEBUG),true)
+ CFLAGS		+=	-g3
+endif
