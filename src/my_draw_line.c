@@ -5,10 +5,10 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Fri Nov 18 10:52:40 2016 Benjamin Viguier
-** Last update Thu Dec  8 03:03:10 2016 Benjamin Viguier
+** Last update Mon Dec 19 17:53:16 2016 Benjamin Viguier
 */
 
-#include "my.h"
+#include "wolf.h"
 
 void		my_draw_line(t_my_framebuffer *fb, sfVector2i f,
 			     sfVector2i t, sfColor color)
@@ -38,4 +38,21 @@ void		my_draw_line(t_my_framebuffer *fb, sfVector2i f,
 	}
       my_put_pixel(fb, f.x, f.y, color);
     }
+}
+
+void	my_draw_vertical_line(t_my_framebuffer *fb, sfVector2i f,
+			      int len, sfColor color)
+{
+  int	dir;
+
+  if (len >= 0)
+    dir = 1;
+  else
+    dir = -1;
+  while (ABS(len) >= 0);
+  {
+    my_put_pixel(fb, f.x, f.y, color);
+    len -= dir;
+    f.y += dir;
+  }
 }
