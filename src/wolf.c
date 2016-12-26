@@ -5,23 +5,31 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Tue Dec 20 16:18:08 2016 Benjamin Viguier
-** Last update Wed Dec 21 14:20:45 2016 Benjamin Viguier
+** Last update Mon Dec 26 18:42:28 2016 Benjamin Viguier
 */
 
 #include <SFML/Window/Event.h>
 #include "wolf.h"
 
+int	init_win_dep(t_win_dep *win, char *win_title, int w, int h)
+{
+  win->sprite = sfSprite_create();
+  win->tex = sfTexture_create(w, h);
+  win->buffer = init_fb(w, h);
+  win->win = create_window(win_title, w, h);
+  if (!(win->win) || !(win->buffer) ||
+      !(win->tex) || !(win->sprite))
+    return (-1);
+  sfSprite_setTexture(win->sprite, win->tex, sfTrue);
+  return (0);
+}
+
 int		wolf(t_wolf *map)
 {
   t_win_dep	win;
-
-  win.sprite = sfSprite_create();
-  win.tex = sfTexture_create(w, h);
-  win.buffer = init_fb(w, h);
-  win.win = create_window("Wolf3d", w, h);
-  if (!win || !buffer || !tex || !sprite)
-    return (-1);
-  sfSprite_setTexture(sprite, tex, sfTrue);
+ 
+  if (init_win_dep(&win, "Wolf3d", 1280, 720) < 0)
+    return(-1);
   while (event(win))
     {
       on_loop(win);

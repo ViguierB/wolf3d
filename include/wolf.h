@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 19 12:49:52 2016 Benjamin Viguier
-** Last update Wed Dec 21 14:20:45 2016 Benjamin Viguier
+** Last update Mon Dec 26 18:41:27 2016 Benjamin Viguier
 */
 
 #ifndef WOLF_H_
@@ -31,7 +31,6 @@ typedef struct	s_my_framebuffer
 }		t_my_framebuffer;
 typedef t_my_framebuffer	t_fb;
 
-
 typedef struct	s_map
 {
   int		w;
@@ -42,12 +41,22 @@ typedef struct	s_map
 
 typedef struct		s_win_dep
 {
+  int			w;
+  int			h;
   sfRenderWindow	*win;
   sfTexture		*tex;
   t_fb			*buffer;
   sfSprite		*sprite;
+  float			a_dir;
+  sfVector2f		dep_vec;
   sfEvent		ev;
 }			t_win_dep;
+
+typedef	struct	s_event_fct
+{
+  int		type;
+  int		(*fct)(t_win_dep *win);
+}		t_event_fct;
 
 typedef struct	s_wolf
 {
@@ -84,4 +93,10 @@ void	my_draw_vertical_line(t_my_framebuffer *fb, sfVector2i f,
 void	my_draw_line(t_my_framebuffer *fb, sfVector2i f,
 		     sfVector2i t, sfColor color);
 
+/*
+** Event Functions
+*/
+int	event(t_win_dep *win);
+int	close_evt(t_win_dep *win);
+int	keypress_evt(t_win_dep *win);
 #endif /* !WOLF_H_ */
