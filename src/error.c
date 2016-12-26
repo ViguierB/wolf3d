@@ -5,16 +5,16 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 19 16:27:19 2016 Benjamin Viguier
-** Last update Mon Dec 19 16:37:44 2016 Benjamin Viguier
+** Last update Mon Dec 26 18:47:28 2016 Benjamin Viguier
 */
 
 #include "error.h"
 
-t_err_msg	msg_tab[] =
+const t_err_msg const	msg_tab[] =
   {
     {-1, "No more memory avaible"},
     {-2, "Cannot open : "},
-    {-3, "Invalide char in map"}
+    {-3, "Invalide char in map"},
     {0, NULL}
   };
 

@@ -5,10 +5,10 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 26 15:54:58 2016 Benjamin Viguier
-** Last update Mon Dec 26 18:40:11 2016 Benjamin Viguier
+** Last update Mon Dec 26 18:45:33 2016 Benjamin Viguier
 */
 
-#include "wolf3d.h"
+#include "wolf.h"
 
 const t_event_fct const	fct_tab[] =
   {
