@@ -22,6 +22,7 @@ typedef struct	s_my_fd
 {
   int		fd;
   char		buffer[MY_FD_BUFF_LEN];
+  int		r_len;	
   int		index;
 }		t_my_fd;
 

@@ -1,0 +1,40 @@
+/*
+** wolf.c for wolf3d in /home/benji_epitech/C_Graph_Prog/wolf3d
+** 
+** Made by Benjamin Viguier
+** Login   <benjamin.viguier@epitech.eu>
+** 
+** Started on  Tue Dec 20 16:18:08 2016 Benjamin Viguier
+** Last update Tue Dec 20 17:44:23 2016 Benjamin Viguier
+*/
+
+#include <SFML/Window/Event.h>
+#include "wolf.h"
+
+int			wolf(t_wolf *map)
+{
+  sfRenderWindow	*win;
+  sfTexture		*tex;
+  t_my_framebuffer	*buffer;
+  sfSprite		*sprite;
+  t_my_vector		modif;
+
+  sprite = sfSprite_create();
+  tex = sfTexture_create(w, h);
+  buffer = init_fb(w, h);
+  init_modif(&modif, type);
+  win = create_window("Wolf3d", w, h);
+  if (!win || !buffer || !tex || !sprite)
+    return (-1);
+  sfSprite_setTexture(sprite, tex, sfTrue);
+  while (verif_event(win, &modif))
+    {
+      clear_fb(buffer);
+      draw_now(buffer, m, modif);
+      sfRenderWindow_clear(win, sfBlack);
+      sfTexture_updateFromPixels(tex, buffer->pixels, w, h, 0, 0);
+      sfRenderWindow_drawSprite(win, sprite, NULL);
+      sfRenderWindow_display(win);
+    }
+  return (0);
+}

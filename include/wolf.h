@@ -5,14 +5,13 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 19 12:49:52 2016 Benjamin Viguier
-** Last update Mon Dec 19 17:53:02 2016 Benjamin Viguier
+** Last update Wed Dec 21 14:20:45 2016 Benjamin Viguier
 */
 
 #ifndef WOLF_H_
 # define WOLF_H_
 
 # include <SFML/Graphics.h>
-# include <SFML/Window/Event.h>
 # include <unistd.h>
 # include "libmy.h"
 
@@ -20,6 +19,9 @@
 # define IS_IN(nbr, x, y) (((nbr) >= (x)) && ((nbr) <= (y)))
 # define MIN(x, y) (((x) < (y)) ? (x) : (y))
 # define MAX(x, y) (((x) > (y)) ? (x) : (y))
+# define ISHIGHTER(x, y) (((x) > (y)) ? (1) : (-1))
+# define BLK 64
+# define BUF_SIZE 4096
 
 typedef struct	s_my_framebuffer
 {
@@ -27,6 +29,8 @@ typedef struct	s_my_framebuffer
   int		width;
   int		height;
 }		t_my_framebuffer;
+typedef t_my_framebuffer	t_fb;
+
 
 typedef struct	s_map
 {
@@ -36,6 +40,30 @@ typedef struct	s_map
   int		**map;
 }		t_map;
 
+typedef struct		s_win_dep
+{
+  sfRenderWindow	*win;
+  sfTexture		*tex;
+  t_fb			*buffer;
+  sfSprite		*sprite;
+  sfEvent		ev;
+}			t_win_dep;
+
+typedef struct	s_wolf
+{
+  sfVector2f	player;
+  int		dep_len;
+  t_map		*map;
+}		t_wolf;
+
+/*
+** Wolf functions
+*/
+int	wolf(t_wolf *map);
+
+/*
+** Map functions
+*/
 int	fill_init_map(t_map *map, int w, int h);
 void	free_map(t_map *map);
 int	open_map(char *file, t_map *map);

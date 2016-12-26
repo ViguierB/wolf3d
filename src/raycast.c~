@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 19 11:14:49 2016 Benjamin Viguier
-** Last update Tue Dec 20 17:39:51 2016 Benjamin Viguier
+** Last update Mon Dec 19 13:22:03 2016 Benjamin Viguier
 */
 
 #include "wolf.h"
@@ -20,9 +20,12 @@ float		raycast(sfVector2f pos, float direction, int **map, sfVector2i mapSize)
   float		tan_dir;
   int		corh;
   int		corv;
+  int		on_wall;
 
+  on_wall = 0;
   pos.x *= BLK;
   pos.y *= BLK;
+  direction = direction % 360;
   if (IS_IN(direction, 0, 180))
     {
       ha.y = BLK;
@@ -51,20 +54,8 @@ float		raycast(sfVector2f pos, float direction, int **map, sfVector2i mapSize)
   hi.x = pos.x + (pos.y - hi.y) / tan_dir;
   vi.x = ((int) pos.y / BLK) * BLK + corv;
   vi.y = pos.y + (pos.x - vi.x) * tan_dir;
-  while (IS_IN((int) hi.y / BLK, 0, mapSize.y - 1) &&
-	 IS_IN((int) hi.x / BLK, 0, mapSize.x - 1) &&
-	 !map[(int) hi.y / BLK][(int) hi.x / BLK])
+  while (!on_wall)
     {
-      hi.x += ha.x;
-      hi.y += ha.y;
+      
     }
-  while (IS_IN((int) hi.y / BLK, 0, mapSize.y - 1) &&
-	 IS_IN((int) hi.x / BLK, 0, mapSize.x - 1) &&
-	 !map[(int) vi.y / BLK][(int) vi.x / BLK])
-    {
-      vi.x += va.x;
-      vi.y += va.y;
-    }
-  return (MIN(ABS(pos.x * BLK - hi.x) / cos(direction),
-	      ABS(pos.x * BLK - vi.x) / cos(direction)));
 }

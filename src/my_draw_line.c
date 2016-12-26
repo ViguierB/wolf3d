@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Fri Nov 18 10:52:40 2016 Benjamin Viguier
-** Last update Mon Dec 19 17:53:16 2016 Benjamin Viguier
+** Last update Tue Dec 20 17:40:19 2016 Benjamin Viguier
 */
 
 #include "wolf.h"
@@ -41,18 +41,20 @@ void		my_draw_line(t_my_framebuffer *fb, sfVector2i f,
 }
 
 void	my_draw_vertical_line(t_my_framebuffer *fb, sfVector2i f,
-			      int len, sfColor color)
+				      int len, sfColor color)
 {
   int	dir;
+  int	tmp;
 
   if (len >= 0)
     dir = 1;
   else
     dir = -1;
-  while (ABS(len) >= 0);
+  tmp = ABS(len);
+  while (tmp > 0)
   {
     my_put_pixel(fb, f.x, f.y, color);
-    len -= dir;
+    tmp -= 1;
     f.y += dir;
   }
 }
