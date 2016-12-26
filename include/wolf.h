@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 19 12:49:52 2016 Benjamin Viguier
-** Last update Mon Dec 26 18:41:27 2016 Benjamin Viguier
+** Last update Mon Dec 26 18:49:32 2016 Benjamin Viguier
 */
 
 #ifndef WOLF_H_
@@ -54,7 +54,7 @@ typedef struct		s_win_dep
 
 typedef	struct	s_event_fct
 {
-  int		type;
+  unsigned	type;
   int		(*fct)(t_win_dep *win);
 }		t_event_fct;
 

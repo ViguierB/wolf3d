@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 26 15:54:58 2016 Benjamin Viguier
-** Last update Mon Dec 26 18:45:33 2016 Benjamin Viguier
+** Last update Mon Dec 26 18:50:10 2016 Benjamin Viguier
 */
 
 #include "wolf.h"
@@ -14,7 +14,7 @@ const t_event_fct const	fct_tab[] =
   {
     {sfEvtClosed, &close_evt},
     {sfEvtKeyPressed, &keypress_evt},
-    {-1, NULL}
+    {0, NULL}
   };
 
 int		event(t_win_dep *win)
@@ -22,7 +22,7 @@ int		event(t_win_dep *win)
   t_event_fct	*cur;
   
   sfRenderWindow_pollEvent(win->win, &(win->ev));
-  cur = fct_tab;
+  cur = (t_event_fct *) fct_tab;
   while (cur->fct != NULL)
     {
       if (win->ev.type == cur->type)
