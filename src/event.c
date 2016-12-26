@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 26 15:54:58 2016 Benjamin Viguier
-** Last update Mon Dec 26 18:50:10 2016 Benjamin Viguier
+** Last update Tue Dec 27 00:28:42 2016 Benjamin Viguier
 */
 
 #include "wolf.h"
@@ -27,6 +27,7 @@ int		event(t_win_dep *win)
     {
       if (win->ev.type == cur->type)
 	return (cur->fct)(win);
+      cur += 1;
     }
   return (1);
 }
