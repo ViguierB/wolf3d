@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 19 12:49:52 2016 Benjamin Viguier
-** Last update Mon Dec 26 18:49:32 2016 Benjamin Viguier
+** Last update Mon Dec 26 22:14:37 2016 Benjamin Viguier
 */
 
 #ifndef WOLF_H_
@@ -52,6 +52,13 @@ typedef struct		s_win_dep
   sfEvent		ev;
 }			t_win_dep;
 
+typedef struct	s_h_line
+{
+  int		x;
+  int		y;
+  int		len;
+}		t_h_line;
+
 typedef	struct	s_event_fct
 {
   unsigned	type;
@@ -61,7 +68,9 @@ typedef	struct	s_event_fct
 typedef struct	s_wolf
 {
   sfVector2f	player;
-  int		dep_len;
+  float		dir;
+  int		fov;
+  float		dpp;
   t_map		*map;
 }		t_wolf;
 
@@ -93,6 +102,13 @@ void	my_draw_vertical_line(t_my_framebuffer *fb, sfVector2i f,
 void	my_draw_line(t_my_framebuffer *fb, sfVector2i f,
 		     sfVector2i t, sfColor color);
 
+/*
+** Projections
+*/
+float		raycast(sfVector2f pos, float direction,
+			int **map, sfVector2i mapSize);
+sfVector2f	move_forward(sfVector2f pos, float direction,
+			     float distance);
 /*
 ** Event Functions
 */

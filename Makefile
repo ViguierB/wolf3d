@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.eu>
 ## 
 ## Started on  Wed Dec  7 12:45:32 2016 Benjamin Viguier
-## Last update Mon Dec 26 18:46:51 2016 Benjamin Viguier
+## Last update Mon Dec 26 18:54:03 2016 Benjamin Viguier
 ##
 
 include $(shell pwd)/lib/my/include/depend.mk
@@ -14,6 +14,7 @@ SRC	= 	src/my_draw_line.c	\
 		src/my_put_pixel.c	\
 		src/raycast.c		\
 		src/openfile.c		\
+		src/projection.c	\
 		src/map.c		\
 		src/wolf.c		\
 		src/event.c		\

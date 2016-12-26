@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Tue Dec 20 16:18:08 2016 Benjamin Viguier
-** Last update Mon Dec 26 18:48:22 2016 Benjamin Viguier
+** Last update Mon Dec 26 23:05:26 2016 Benjamin Viguier
 */
 
 #include <SFML/Window/Event.h>
@@ -26,7 +26,7 @@ int	init_win_dep(t_win_dep *win, char *win_title, int w, int h)
 
 void		on_loop(t_win_dep *win)
 {
-
+  
 }
 
 int		wolf(t_wolf *map)
@@ -39,7 +39,8 @@ int		wolf(t_wolf *map)
     {
       on_loop(&win);
       sfRenderWindow_clear(win.win, sfBlack);
-      sfTexture_updateFromPixels(win.tex, win.buffer->pixels, win.w, win.h, 0, 0);
+      sfTexture_updateFromPixels(win.tex, win.buffer->pixels,
+				 win.w, win.h, 0, 0);
       sfRenderWindow_drawSprite(win.win, win.sprite, NULL);
       sfRenderWindow_display(win.win);
     }

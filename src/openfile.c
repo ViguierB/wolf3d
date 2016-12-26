@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Wed Dec  7 09:53:54 2016 Benjamin Viguier
-** Last update Tue Dec 20 16:13:47 2016 Benjamin Viguier
+** Last update Mon Dec 26 23:03:33 2016 Benjamin Viguier
 */
 
 #include <sys/types.h>
@@ -65,12 +65,12 @@ int	fill_map(t_map *map, char **buffer)
   int	j;
 
   i = 1;
-  while (i < map->h)
+  while (i < map->h - 1)
     {
-      j = 0;
-      while (buffer[i][j])
+      j = 1;
+      while (buffer[i - 1][j - 1])
 	{
-	  map->map[i][j] = buffer[i][j] - '0';
+	  map->map[i][j] = buffer[i - 1][j - 1] - '0';
 	  if (map->map[i][j] != 0 && map->map[i][j] != 1)
 	    return (-3);
 	  j += 1;
