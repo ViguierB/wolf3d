@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 19 12:49:52 2016 Benjamin Viguier
-** Last update Mon Dec 26 22:14:37 2016 Benjamin Viguier
+** Last update Mon Dec 26 23:59:56 2016 Benjamin Viguier
 */
 
 #ifndef WOLF_H_
@@ -13,6 +13,7 @@
 
 # include <SFML/Graphics.h>
 # include <unistd.h>
+# include <math.h>
 # include "libmy.h"
 
 # define ABS(x) (((x) < 0) ? -(x) : (x))
@@ -20,6 +21,7 @@
 # define MIN(x, y) (((x) < (y)) ? (x) : (y))
 # define MAX(x, y) (((x) > (y)) ? (x) : (y))
 # define ISHIGHTER(x, y) (((x) > (y)) ? (1) : (-1))
+# define GET_RADIAN(x) ((x * M_PI) / 180.0)
 # define BLK 64
 # define BUF_SIZE 4096
 

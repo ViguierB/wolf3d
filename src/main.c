@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 19 14:16:05 2016 Benjamin Viguier
-** Last update Mon Dec 19 17:23:42 2016 Benjamin Viguier
+** Last update Tue Dec 27 00:01:41 2016 Benjamin Viguier
 */
 
 #include "wolf.h"
@@ -22,10 +22,11 @@ int	print_usage(void)
   return (0);
 }
 
-int main(int ac, char **av)
+int		main(int ac, char **av)
 {
-  int	open_res;
-  t_map	map;
+  int		open_res;
+  t_map		map;
+  t_wolf	wol;
   
   if (ac < 2 || my_strcmp(av[1], "-h") == 0)
     return (print_usage());
@@ -34,5 +35,10 @@ int main(int ac, char **av)
     on_error(open_res, av[1]);
   else if (open_res < 0)
     on_error(open_res, NULL);
+  wol.map = &map;
+  wol.player = (sfVector2f){(float) map.w / 2.0, (float) map.h / 2.0};
+  wol.fov = 60;
+  wol.dpp = map.w / 2 / tan(GET_RADIAN(wol.fov / 2));
+  wolf(&wol);
   return (0);
 }
