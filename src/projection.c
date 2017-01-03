@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 26 18:52:59 2016 Benjamin Viguier
-** Last update Mon Dec 26 22:31:54 2016 Benjamin Viguier
+** Last update Tue Jan  3 17:25:14 2017 Benjamin Viguier
 */
 
 #include "wolf.h"
@@ -33,14 +33,19 @@ void		get_lines_projections(t_wolf *map, t_h_line *buffer, t_win_dep *win)
   i = 0;
   while (i < win->w)
     {
-      a_proj = ((map->fov * i) / win->w) - (map->fov / 2);
-      dir = add_angles(map->dir, a_proj);
+      a_proj = ((map->fov * i) / (float) win->w) - (map->fov / 2.0);
+      dir = add_angles(win->a_dir, a_proj);
+      //printf("%f %f %f\n", dir, map->player.x, map->player.y);
       raycast_res = raycast(map->player, dir, map->map->map,
 			    (sfVector2i){map->map->w, map->map->h});
-      raycast_res *= cos(ABS(a_proj));
+      raycast_res *= cos(ABS(GET_RADIAN(a_proj)));
       buffer[i].x = i;
-      buffer[i].len = (1 / raycast_res) * map->dpp;
-      buffer[i].y = (win->h + buffer[i].len) / 2;
+      if (raycast_res)
+	buffer[i].len = (int) (BLK / raycast_res * map->dpp);
+      else
+	buffer[i].len = win->h;
+      buffer[i].y = (win->h - buffer[i].len) / 2;
+      printf("x = %d -> dist = %f, wall_len = %d\n", i, raycast_res, buffer[i].len);
       i += 1;
     }
 }

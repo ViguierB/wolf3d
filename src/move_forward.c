@@ -5,15 +5,17 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Fri Dec 16 14:21:12 2016 Benjamin Viguier
-** Last update Mon Dec 19 10:51:24 2016 Benjamin Viguier
+** Last update Tue Jan  3 16:52:31 2017 Benjamin Viguier
 */
 
+#include <SFML/Graphics.h>
 #include <math.h>
+#include "wolf.h"
 
 sfVector2f	move_forward(sfVector2f pos, float direction, float distance)
 {
-  direction = (direction * M_PI) / 180;
-  pos.x += (sin(direction) * distance);
-  pos.y += (cos(direction) * distance);
+  direction = GET_RADIAN(direction);
+  pos.x += (cos(direction) * distance);
+  pos.y += (sin(direction) * distance);
   return (pos);
 }

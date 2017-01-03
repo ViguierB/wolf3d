@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 19 12:49:52 2016 Benjamin Viguier
-** Last update Mon Dec 26 23:59:56 2016 Benjamin Viguier
+** Last update Tue Jan  3 17:21:08 2017 Benjamin Viguier
 */
 
 #ifndef WOLF_H_
@@ -17,11 +17,13 @@
 # include "libmy.h"
 
 # define ABS(x) (((x) < 0) ? -(x) : (x))
+# define FABS(x) (((x) < 0.0) ? -(x) : (x))
 # define IS_IN(nbr, x, y) (((nbr) >= (x)) && ((nbr) <= (y)))
 # define MIN(x, y) (((x) < (y)) ? (x) : (y))
 # define MAX(x, y) (((x) > (y)) ? (x) : (y))
 # define ISHIGHTER(x, y) (((x) > (y)) ? (1) : (-1))
-# define GET_RADIAN(x) ((x * M_PI) / 180.0)
+# define GET_RADIAN(x) (((x) * M_PI) / 180.0)
+# define IDEB(x) my_printf("%d\n", x);
 # define BLK 64
 # define BUF_SIZE 4096
 
@@ -41,6 +43,13 @@ typedef struct	s_map
   int		**map;
 }		t_map;
 
+typedef struct	s_h_line
+{
+  int		x;
+  int		y;
+  int		len;
+}		t_h_line;
+
 typedef struct		s_win_dep
 {
   int			w;
@@ -49,17 +58,11 @@ typedef struct		s_win_dep
   sfTexture		*tex;
   t_fb			*buffer;
   sfSprite		*sprite;
+  t_h_line		*line_buffer;
   float			a_dir;
   sfVector2f		dep_vec;
   sfEvent		ev;
 }			t_win_dep;
-
-typedef struct	s_h_line
-{
-  int		x;
-  int		y;
-  int		len;
-}		t_h_line;
 
 typedef	struct	s_event_fct
 {
@@ -111,10 +114,12 @@ float		raycast(sfVector2f pos, float direction,
 			int **map, sfVector2i mapSize);
 sfVector2f	move_forward(sfVector2f pos, float direction,
 			     float distance);
+void		get_lines_projections(t_wolf *map, t_h_line *buffer,
+				      t_win_dep *win);
 /*
 ** Event Functions
 */
-int	event(t_win_dep *win);
+int	event(t_win_dep *win, int *first);
 int	close_evt(t_win_dep *win);
 int	keypress_evt(t_win_dep *win);
 #endif /* !WOLF_H_ */

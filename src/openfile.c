@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Wed Dec  7 09:53:54 2016 Benjamin Viguier
-** Last update Mon Dec 26 23:03:33 2016 Benjamin Viguier
+** Last update Fri Dec 30 16:17:30 2016 Benjamin Viguier
 */
 
 #include <sys/types.h>
@@ -92,6 +92,7 @@ int	open_map(char *file, t_map *map)
   if (read_res < 0)
     return (-1);
   sp_buffer = my_split(buffer, '\n', &(map->h));
+  map->h += 1;
   free(buffer);
   if (!sp_buffer)
     return (-1);

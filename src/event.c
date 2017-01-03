@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 26 15:54:58 2016 Benjamin Viguier
-** Last update Tue Dec 27 00:28:42 2016 Benjamin Viguier
+** Last update Tue Jan  3 17:20:43 2017 Benjamin Viguier
 */
 
 #include "wolf.h"
@@ -17,17 +17,27 @@ const t_event_fct const	fct_tab[] =
     {0, NULL}
   };
 
-int		event(t_win_dep *win)
+int		event(t_win_dep *win, int *first)
 {
   t_event_fct	*cur;
-  
-  sfRenderWindow_pollEvent(win->win, &(win->ev));
-  cur = (t_event_fct *) fct_tab;
-  while (cur->fct != NULL)
+  int		cont;
+
+  cont = 1;
+  if (*first)
     {
-      if (win->ev.type == cur->type)
-	return (cur->fct)(win);
-      cur += 1;
+      *first = 0;
+      return (1);
+    }
+  while (cont)
+    {
+      sfRenderWindow_pollEvent(win->win, &(win->ev));
+      cur = (t_event_fct *) fct_tab;
+      while (cur->fct != NULL)
+	{
+	  if (win->ev.type == cur->type)
+	    return (cur->fct)(win);
+	  cur += 1;
+	}
     }
   return (1);
 }
@@ -43,12 +53,12 @@ int	keypress_evt(t_win_dep *win)
   if (win->ev.key.code == sfKeyEscape)
     return (0);
   else if (win->ev.key.code == sfKeyZ)
-    win->dep_vec.y = 1.0;
+    win->dep_vec.y = 0.05;
   else if (win->ev.key.code == sfKeyS)
-    win->dep_vec.y = -1.0;
+    win->dep_vec.y = -0.05;
   else if (win->ev.key.code == sfKeyD)
-    win->a_dir += 1.0;
+    win->a_dir += 5.0;
   else if (win->ev.key.code == sfKeyQ)
-    win->a_dir += -1.0;
+    win->a_dir += -5.0;
   return (1);
 }
