@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.eu>
 ## 
 ## Started on  Wed Nov  9 17:16:44 2016 Benjamin Viguier
-## Last update Fri Jan  6 18:17:53 2017 Benjamin Viguier
+## Last update Mon Dec 19 17:45:33 2016 Benjamin Viguier
 ##
 
 CC		=	gcc
@@ -14,7 +14,7 @@ DEBUG		=	true
 
 WALL		=	true
 
-RELEASE		=	true
+RELEASE		=	false
 
 ifeq	($(WALL),true)
  CFLAGS		+=	-W -Wall -Wextra
