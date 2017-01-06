@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 19 14:16:05 2016 Benjamin Viguier
-** Last update Fri Jan  6 16:35:47 2017 Benjamin Viguier
+** Last update Fri Jan  6 17:16:25 2017 Benjamin Viguier
 */
 
 #include "wolf.h"

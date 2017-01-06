@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Tue Dec 20 16:18:08 2016 Benjamin Viguier
-** Last update Fri Jan  6 16:25:38 2017 Benjamin Viguier
+** Last update Fri Jan  6 17:15:58 2017 Benjamin Viguier
 */
 
 #include <SFML/Window/Event.h>
@@ -39,8 +39,7 @@ void	on_loop(t_win_dep *win, t_wolf *map)
     {
       tmp = map->player;
       map->player = move_forward(map->player, win->a_dir, win->dep_vec.y);
-      if (!IS_IN(map->player.x, 0, map->map->w - 1) ||
-	  !IS_IN(map->player.y, 0, map->map->h - 1))
+      if (map->map->map[(int) map->player.y][(int) map->player.x] > 0)
 	map->player = tmp;
       win->dep_vec.y = 0.0;
     }
@@ -59,13 +58,16 @@ int		wolf(t_wolf *map)
 {
   t_win_dep	win;
   int		first;
+  int		event_res;
 
   if (init_win_dep(&win, "Wolf3d", 1280, 720) < 0)
     return (-1);
   map->dpp = (win.w / 2) / tan(GET_RADIAN(map->fov / 2));
   first = 1;
-  while (event(&win, &first))
+  event_res = 1;
+  while (event_res)
     {
+      event_res = event(&win, &first);
       clear_fb(win.buffer);
       on_loop(&win, map);
       sfRenderWindow_clear(win.win, sfBlack);

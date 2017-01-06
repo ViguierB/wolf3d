@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 26 15:54:58 2016 Benjamin Viguier
-** Last update Fri Jan  6 15:40:58 2017 Benjamin Viguier
+** Last update Fri Jan  6 17:17:20 2017 Benjamin Viguier
 */
 
 #include "wolf.h"
@@ -20,22 +20,20 @@ const t_event_fct const	fct_tab[] =
 int		event(t_win_dep *win, int *first)
 {
   t_event_fct	*cur;
-  int		cont;
 
-  cont = 1;
   if (*first)
     {
       *first = 0;
       return (1);
     }
-  while (cont)
+  while (sfRenderWindow_pollEvent(win->win, &(win->ev)))
     {
-      sfRenderWindow_pollEvent(win->win, &(win->ev));
       cur = (t_event_fct *) fct_tab;
       while (cur->fct != NULL)
 	{
 	  if (win->ev.type == cur->type)
-	    return (cur->fct)(win);
+	    if (!((cur->fct)(win)))
+	      return (0);
 	  cur += 1;
 	}
     }
@@ -52,11 +50,11 @@ int	keypress_evt(t_win_dep *win)
 {
   if (win->ev.key.code == sfKeyEscape)
     return (0);
-  else if (win->ev.key.code == sfKeyZ)
+  if (win->ev.key.code == sfKeyZ)
     win->dep_vec.y = 0.2;
   else if (win->ev.key.code == sfKeyS)
     win->dep_vec.y = -0.2;
-  else if (win->ev.key.code == sfKeyD)
+  if (win->ev.key.code == sfKeyD)
     win->a_dir += 5.0;
   else if (win->ev.key.code == sfKeyQ)
     win->a_dir += -5.0;

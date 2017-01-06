@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 26 18:52:59 2016 Benjamin Viguier
-** Last update Fri Jan  6 16:26:37 2017 Benjamin Viguier
+** Last update Fri Jan  6 18:13:35 2017 Benjamin Viguier
 */
 
 #include <math.h>
@@ -38,7 +38,7 @@ void		get_lines_projections(t_wolf *map, t_h_line *buffer,
       dir = add_angles(win->a_dir, a_proj);
       raycast_res = raycast(map->player, dir, map->map->map,
 			    (sfVector2i){map->map->w, map->map->h});
-      raycast_res *= cos(ABS(GET_RADIAN((double) a_proj)));
+      raycast_res *= cos(ABS(GET_RADIAN(a_proj)));
       buffer[i].x = i;
       if (raycast_res)
 	buffer[i].len = (int) (1.0 / raycast_res * map->dpp);

@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 19 11:14:49 2016 Benjamin Viguier
-** Last update Fri Jan  6 16:24:31 2017 Benjamin Viguier
+** Last update Fri Jan  6 18:16:26 2017 Benjamin Viguier
 */
 
 #include <SFML/Graphics.h>
@@ -58,6 +58,13 @@ sfVector2i	init_side_and_step(sfVector2f *vectf[], sfVector2i *map_pos)
     }
   return (step);
 }
+
+/*
+** dist[0] --> side_dist
+** dist[1] --> delta_dist
+** pos[0]  --> map_pos
+** pos[1]  --> step
+*/
 
 int	casting(sfVector2f *dist[], sfVector2i *pos[],
 		int **map, sfVector2i *mapSize)
