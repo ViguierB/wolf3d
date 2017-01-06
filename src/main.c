@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 19 14:16:05 2016 Benjamin Viguier
-** Last update Fri Jan  6 16:29:33 2017 Benjamin Viguier
+** Last update Fri Jan  6 16:29:46 2017 Benjamin Viguier
 */
 
 #include "wolf.h"
@@ -36,12 +36,6 @@ int		main(int ac, char **av)
   else if (open_res < 0)
     on_error(open_res, NULL);
   wol.map = &map;
-  for (int i = 0; i < map.h; i++)
-    {
-      for (int j = 0; j < map.w; j++)
-	my_printf("%d", map.map[i][j]);
-      my_putchar('\n');
-    }
   wol.player = (sfVector2f){(float) map.w / 2.0, (float) map.h / 2.0};
   wol.fov = 66;
   wolf(&wol);
