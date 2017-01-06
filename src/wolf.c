@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Tue Dec 20 16:18:08 2016 Benjamin Viguier
-** Last update Tue Jan  3 17:20:04 2017 Benjamin Viguier
+** Last update Fri Jan  6 15:40:11 2017 Benjamin Viguier
 */
 
 #include <SFML/Window/Event.h>
@@ -39,8 +39,8 @@ void	on_loop(t_win_dep *win, t_wolf *map)
     {
       tmp = map->player;
       map->player = move_forward(map->player, win->a_dir, win->dep_vec.y);
-      if (!IS_IN(map->player.x, 0, map->map->h - 1) ||
-	  !IS_IN(map->player.y, 0, map->map->w - 1))
+      if (!IS_IN(map->player.x, 0, map->map->w - 1) ||
+	  !IS_IN(map->player.y, 0, map->map->h - 1))
 	map->player = tmp;
       win->dep_vec.y = 0.0;
     }

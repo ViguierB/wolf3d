@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 26 15:54:58 2016 Benjamin Viguier
-** Last update Tue Jan  3 17:20:43 2017 Benjamin Viguier
+** Last update Fri Jan  6 15:40:58 2017 Benjamin Viguier
 */
 
 #include "wolf.h"
@@ -53,9 +53,9 @@ int	keypress_evt(t_win_dep *win)
   if (win->ev.key.code == sfKeyEscape)
     return (0);
   else if (win->ev.key.code == sfKeyZ)
-    win->dep_vec.y = 0.05;
+    win->dep_vec.y = 0.2;
   else if (win->ev.key.code == sfKeyS)
-    win->dep_vec.y = -0.05;
+    win->dep_vec.y = -0.2;
   else if (win->ev.key.code == sfKeyD)
     win->a_dir += 5.0;
   else if (win->ev.key.code == sfKeyQ)

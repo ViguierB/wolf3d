@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Fri Nov 18 10:52:40 2016 Benjamin Viguier
-** Last update Tue Dec 20 17:40:19 2016 Benjamin Viguier
+** Last update Wed Jan  4 14:21:31 2017 Benjamin Viguier
 */
 
 #include "wolf.h"
@@ -46,6 +46,11 @@ void	my_draw_vertical_line(t_my_framebuffer *fb, sfVector2i f,
   int	dir;
   int	tmp;
 
+  if (len > fb->height)
+    {
+      len = fb->height;
+      f.y = 0;
+    }
   if (len >= 0)
     dir = 1;
   else

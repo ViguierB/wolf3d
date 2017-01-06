@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 12 13:19:11 2016 Benjamin Viguier
-** Last update Thu Dec 22 17:11:15 2016 Benjamin Viguier
+** Last update Wed Jan  4 15:40:06 2017 Benjamin Viguier
 */
 
 #ifndef LIBMY_H_
@@ -17,6 +17,7 @@
 # define S_OUT 1
 # define S_ERR 2
 # define MY_FD_BUFF_LEN 512
+# define PSQ(x) ((x) * (x))
 
 typedef struct	s_my_fd
 {

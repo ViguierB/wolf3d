@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 19 12:49:52 2016 Benjamin Viguier
-** Last update Tue Jan  3 17:21:08 2017 Benjamin Viguier
+** Last update Fri Jan  6 15:39:14 2017 Benjamin Viguier
 */
 
 #ifndef WOLF_H_
@@ -17,15 +17,15 @@
 # include "libmy.h"
 
 # define ABS(x) (((x) < 0) ? -(x) : (x))
-# define FABS(x) (((x) < 0.0) ? -(x) : (x))
 # define IS_IN(nbr, x, y) (((nbr) >= (x)) && ((nbr) <= (y)))
 # define MIN(x, y) (((x) < (y)) ? (x) : (y))
 # define MAX(x, y) (((x) > (y)) ? (x) : (y))
 # define ISHIGHTER(x, y) (((x) > (y)) ? (1) : (-1))
 # define GET_RADIAN(x) (((x) * M_PI) / 180.0)
 # define IDEB(x) my_printf("%d\n", x);
-# define BLK 64
-# define BUF_SIZE 4096
+# define BLK (1)
+# define FBLK ((float) BLK)
+# define BUF_SIZE (4096)
 
 typedef struct	s_my_framebuffer
 {
@@ -122,4 +122,9 @@ void		get_lines_projections(t_wolf *map, t_h_line *buffer,
 int	event(t_win_dep *win, int *first);
 int	close_evt(t_win_dep *win);
 int	keypress_evt(t_win_dep *win);
+
+/*
+** Utils
+*/
+int	inter(int x, int min, int max, int check_type);
 #endif /* !WOLF_H_ */

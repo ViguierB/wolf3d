@@ -1,14 +1,14 @@
 ##
-## Makefile for wireframe in /home/benji_epitech/C_Graph_Prog/wireframe
+## Makefile for wolf3d in /home/benji_epitech/C_Graph_Prog/wolf3d
 ## 
 ## Made by Benjamin Viguier
 ## Login   <benjamin.viguier@epitech.eu>
 ## 
 ## Started on  Wed Dec  7 12:45:32 2016 Benjamin Viguier
-## Last update Thu Dec 29 20:16:03 2016 Benjamin Viguier
+## Last update Wed Jan  4 14:35:42 2017 Benjamin Viguier
 ##
 
-include $(shell pwd)/lib/my/include/depend.mk
+include $(shell pwd)/include/depend.mk
 
 SRC	= 	src/my_draw_line.c	\
 		src/my_put_pixel.c	\

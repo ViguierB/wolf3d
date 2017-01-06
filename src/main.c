@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 19 14:16:05 2016 Benjamin Viguier
-** Last update Tue Jan  3 15:57:06 2017 Benjamin Viguier
+** Last update Fri Jan  6 15:26:01 2017 Benjamin Viguier
 */
 
 #include "wolf.h"
@@ -43,7 +43,7 @@ int		main(int ac, char **av)
       my_putchar('\n');
     }
   wol.player = (sfVector2f){(float) map.w / 2.0, (float) map.h / 2.0};
-  wol.fov = 60;
+  wol.fov = 66;
   wolf(&wol);
   return (0);
 }
