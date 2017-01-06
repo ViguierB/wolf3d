@@ -14,3 +14,6 @@ tests/
 
 //Map files
 *.w
+
+//Bonus dir
+bonus/

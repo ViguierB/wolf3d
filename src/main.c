@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 19 14:16:05 2016 Benjamin Viguier
-** Last update Fri Jan  6 16:29:46 2017 Benjamin Viguier
+** Last update Fri Jan  6 16:35:47 2017 Benjamin Viguier
 */
 
 #include "wolf.h"
@@ -15,10 +15,10 @@ int	print_usage(void)
   my_printf("Usage :\n"
 	    "\t./wolf3d map\n\n"
 	    "\tAn exemple of map (cat map) :\n"
-	    "\t\t1 1 1 1\n"
-	    "\t\t1 0 0 1\n"
-	    "\t\t1 0 0 1\n"
-	    "\t\t1 1 1 1\n");
+	    "\t\t1111\n"
+	    "\t\t1001\n"
+	    "\t\t1001\n"
+	    "\t\t1111\n");
   return (0);
 }
 
