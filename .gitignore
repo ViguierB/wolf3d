@@ -11,3 +11,6 @@ wolf3d
 
 //Tests Directory
 tests/
+
+//Map files
+*.w
