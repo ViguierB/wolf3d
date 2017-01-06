@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 19 14:16:05 2016 Benjamin Viguier
-** Last update Fri Jan  6 15:26:01 2017 Benjamin Viguier
+** Last update Fri Jan  6 16:25:48 2017 Benjamin Viguier
 */
 
 #include "wolf.h"
@@ -27,7 +27,7 @@ int		main(int ac, char **av)
   int		open_res;
   t_map		map;
   t_wolf	wol;
-  
+
   if (ac < 2 || my_strcmp(av[1], "-h") == 0)
     return (print_usage());
   open_res = open_map(av[1], &map);

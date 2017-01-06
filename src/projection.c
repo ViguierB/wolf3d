@@ -5,11 +5,11 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 26 18:52:59 2016 Benjamin Viguier
-** Last update Fri Jan  6 15:24:28 2017 Benjamin Viguier
+** Last update Fri Jan  6 16:16:31 2017 Benjamin Viguier
 */
 
-#include "wolf.h"
 #include <math.h>
+#include "wolf.h"
 
 float	add_angles(float a, float b)
 {
@@ -23,7 +23,8 @@ float	add_angles(float a, float b)
   return (new_angle);
 }
 
-void		get_lines_projections(t_wolf *map, t_h_line *buffer, t_win_dep *win)
+void		get_lines_projections(t_wolf *map, t_h_line *buffer,
+				      t_win_dep *win)
 {
   int		i;
   float		raycast_res;

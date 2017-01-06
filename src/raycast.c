@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 19 11:14:49 2016 Benjamin Viguier
-** Last update Fri Jan  6 16:14:22 2017 Benjamin Viguier
+** Last update Fri Jan  6 16:24:31 2017 Benjamin Viguier
 */
 
 #include <SFML/Graphics.h>
@@ -88,7 +88,8 @@ int	casting(sfVector2f *dist[], sfVector2i *pos[],
   return (side);
 }
 
-float		raycast(sfVector2f pos, float direction, int **map, sfVector2i mapSize)
+float		raycast(sfVector2f pos, float direction,
+			int **map, sfVector2i mapSize)
 {
   sfVector2f	delta_dist;
   sfVector2f	side_dist;
@@ -102,8 +103,10 @@ float		raycast(sfVector2f pos, float direction, int **map, sfVector2i mapSize)
   ray_dir = (sfVector2f){cos(direction), sin(direction)};
   delta_dist.x = sqrt(1.0 + (ray_dir.y * ray_dir.y) / (ray_dir.x * ray_dir.x));
   delta_dist.y = sqrt(1.0 + (ray_dir.x * ray_dir.x) / (ray_dir.y * ray_dir.y));
-  step = init_side_and_step((sfVector2f*[]) {&pos, &delta_dist, &ray_dir, &side_dist},
-			    &map_pos);
+  step =
+    init_side_and_step((sfVector2f*[])
+		       {&pos, &delta_dist, &ray_dir, &side_dist},
+		       &map_pos);
   side = casting((sfVector2f*[]) {&side_dist, &delta_dist},
 		 (sfVector2i*[]) {&map_pos, &step},
 		 map, &mapSize);

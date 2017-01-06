@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Tue Dec 20 16:18:08 2016 Benjamin Viguier
-** Last update Fri Jan  6 15:40:11 2017 Benjamin Viguier
+** Last update Fri Jan  6 16:25:38 2017 Benjamin Viguier
 */
 
 #include <SFML/Window/Event.h>
@@ -48,7 +48,8 @@ void	on_loop(t_win_dep *win, t_wolf *map)
   i = 0;
   while (i < win->w)
     {
-      my_draw_vertical_line(win->buffer, (sfVector2i){i, win->line_buffer[i].y},
+      my_draw_vertical_line(win->buffer,
+			    (sfVector2i){i, win->line_buffer[i].y},
 			    win->line_buffer[i].len, sfWhite);
       i += 1;
     }
@@ -58,9 +59,9 @@ int		wolf(t_wolf *map)
 {
   t_win_dep	win;
   int		first;
- 
+
   if (init_win_dep(&win, "Wolf3d", 1280, 720) < 0)
-    return(-1);
+    return (-1);
   map->dpp = (win.w / 2) / tan(GET_RADIAN(map->fov / 2));
   first = 1;
   while (event(&win, &first))
