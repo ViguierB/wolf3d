@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 19 12:49:52 2016 Benjamin Viguier
-** Last update Fri Jan  6 19:55:03 2017 Benjamin Viguier
+** Last update Sat Jan  7 13:37:48 2017 Benjamin Viguier
 */
 
 #ifndef WOLF_H_
@@ -26,6 +26,7 @@
 # define BLK (1)
 # define FBLK ((float) BLK)
 # define BUF_SIZE (4096)
+# define RENDER_DIST (50.0)
 
 typedef struct	s_my_framebuffer
 {
@@ -50,6 +51,15 @@ typedef struct	s_h_line
   int		len;
 }		t_h_line;
 
+typedef struct	s_ray
+{
+  float		len;
+  int		val;
+  int		side;
+  sfVector2f	delta_dist;
+  t_h_line	line;
+}		t_ray;
+
 typedef struct		s_win_dep
 {
   int			w;
@@ -58,7 +68,7 @@ typedef struct		s_win_dep
   sfTexture		*tex;
   t_fb			*buffer;
   sfSprite		*sprite;
-  t_h_line		*line_buffer;
+  t_ray			*ray_buffer;
   float			a_dir;
   sfVector2f		dep_vec;
   sfEvent		ev;
@@ -78,14 +88,6 @@ typedef struct	s_wolf
   float		dpp;
   t_map		*map;
 }		t_wolf;
-
-typedef struct	s_ray
-{
-  float		len;
-  int		val;
-  int		side;
-  sfVector2f	delta_dist;
-}		t_ray;
 
 /*
 ** Wolf functions
@@ -118,11 +120,11 @@ void	my_draw_line(t_my_framebuffer *fb, sfVector2i f,
 /*
 ** Projections
 */
-t_ray		raycast(sfVector2f pos, float direction,
-			int **map);
+void		raycast(t_ray *ray, sfVector2f pos,
+			float direction, int **map);
 sfVector2f	move_forward(sfVector2f pos, float direction,
 			     float distance);
-void		get_lines_projections(t_wolf *map, t_h_line *buffer,
+void		get_ray_projections(t_wolf *map, t_ray *buffer,
 				      t_win_dep *win);
 /*
 ** Event Functions
@@ -134,5 +136,6 @@ int	keypress_evt(t_win_dep *win);
 /*
 ** Utils
 */
+sfColor	get_color_by_ray(t_ray *ray);
 int	inter(int x, int min, int max, int check_type);
 #endif /* !WOLF_H_ */

@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 26 18:52:59 2016 Benjamin Viguier
-** Last update Fri Jan  6 20:11:34 2017 Benjamin Viguier
+** Last update Sat Jan  7 13:12:57 2017 Benjamin Viguier
 */
 
 #include <math.h>
@@ -23,11 +23,10 @@ float	add_angles(float a, float b)
   return (new_angle);
 }
 
-void		get_lines_projections(t_wolf *map, t_h_line *buffer,
+void		get_ray_projections(t_wolf *map, t_ray *buffer,
 				      t_win_dep *win)
 {
   int		i;
-  t_ray		ray;
   float		dir;
   float		a_proj;
 
@@ -36,14 +35,14 @@ void		get_lines_projections(t_wolf *map, t_h_line *buffer,
     {
       a_proj = ((map->fov * i) / (float) win->w) - (map->fov / 2.0);
       dir = add_angles(win->a_dir, a_proj);
-      ray = raycast(map->player, dir, map->map->map);
-      ray.len *= cos(ABS(GET_RADIAN((double) a_proj)));
-      buffer[i].x = i;
-      if (ray.len)
-	buffer[i].len = (int) (1.0 / ray.len * map->dpp);
+      raycast(buffer + i, map->player, dir, map->map->map);
+      buffer[i].len *= cos(ABS(GET_RADIAN(a_proj)));
+      buffer[i].line.x = i;
+      if (buffer[i].len)
+	buffer[i].line.len = (int) (FBLK / buffer[i].len * map->dpp);
       else
-	buffer[i].len = win->h;
-      buffer[i].y = (win->h - buffer[i].len) / 2;
+	buffer[i].line.len = win->h;
+      buffer[i].line.y = (win->h - buffer[i].line.len) / 2;
       i += 1;
     }
 }

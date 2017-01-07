@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 19 11:14:49 2016 Benjamin Viguier
-** Last update Fri Jan  6 19:56:05 2017 Benjamin Viguier
+** Last update Sat Jan  7 13:13:55 2017 Benjamin Viguier
 */
 
 #include <math.h>
@@ -87,11 +87,9 @@ int	casting(sfVector2f *dist[], sfVector2i *pos[],
   return (side);
 }
 
-t_ray		raycast(sfVector2f pos, float direction,
-			int **map)
+void		raycast(t_ray *ray, sfVector2f pos,
+			float direction, int **map)
 {
-  t_ray		ray;
-  sfVector2f	delta_dist;
   sfVector2f	side_dist;
   sfVector2f	ray_dir;
   sfVector2i	step;
@@ -100,18 +98,17 @@ t_ray		raycast(sfVector2f pos, float direction,
   direction = (direction * M_PI) / 180;
   map_pos = (sfVector2i){(int) pos.x, (int) pos.y};
   ray_dir = (sfVector2f){cos(direction), sin(direction)};
-  ray.delta_dist.x = sqrt(1.0 + (ray_dir.y * ray_dir.y) / (ray_dir.x * ray_dir.x));
-  ray.delta_dist.y = sqrt(1.0 + (ray_dir.x * ray_dir.x) / (ray_dir.y * ray_dir.y));
+  ray->delta_dist.x = sqrt(1.0 + (ray_dir.y * ray_dir.y) / (ray_dir.x * ray_dir.x));
+  ray->delta_dist.y = sqrt(1.0 + (ray_dir.x * ray_dir.x) / (ray_dir.y * ray_dir.y));
   step =
     init_side_and_step((sfVector2f*[])
-		       {&pos, &(ray.delta_dist), &ray_dir, &side_dist},
+		       {&pos, &(ray->delta_dist), &ray_dir, &side_dist},
 		       &map_pos);
-  ray.side = casting((sfVector2f*[]) {&side_dist, &(ray.delta_dist)},
+  ray->side = casting((sfVector2f*[]) {&side_dist, &(ray->delta_dist)},
 		 (sfVector2i*[]) {&map_pos, &step},
-		 map, &ray);
-  if (!ray.side)
-    ray.len = (map_pos.x - pos.x + (1.0 - step.x) / 2.0) / ray_dir.x;
+		 map, ray);
+  if (!ray->side)
+    ray->len = (map_pos.x - pos.x + (1.0 - step.x) / 2.0) / ray_dir.x;
   else
-    ray.len = (map_pos.y - pos.y + (1.0 - step.y) / 2.0) / ray_dir.y;
-  return (ray);
+    ray->len = (map_pos.y - pos.y + (1.0 - step.y) / 2.0) / ray_dir.y;
 }

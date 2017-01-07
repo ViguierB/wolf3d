@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Fri Nov 18 11:16:08 2016 Benjamin Viguier
-** Last update Mon Dec 19 17:34:47 2016 Benjamin Viguier
+** Last update Fri Jan  6 23:19:04 2017 Benjamin Viguier
 */
 
 #include "wolf.h"
@@ -48,7 +48,7 @@ t_my_framebuffer	*init_fb(int w, int h)
   sfUint8		*res;
   t_my_framebuffer	*fb;
 
-  array_len = 4 * w * h;
+  array_len = 4 * w * h + 1;
   fb = malloc(sizeof(t_my_framebuffer));
   res = malloc(sizeof(sfUint8) * array_len);
   if (!res || !fb)
