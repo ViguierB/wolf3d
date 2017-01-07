@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 19 12:49:52 2016 Benjamin Viguier
-** Last update Sat Jan  7 13:37:48 2017 Benjamin Viguier
+** Last update Sat Jan  7 17:00:49 2017 Benjamin Viguier
 */
 
 #ifndef WOLF_H_
@@ -27,6 +27,7 @@
 # define FBLK ((float) BLK)
 # define BUF_SIZE (4096)
 # define RENDER_DIST (50.0)
+# define MINI_MAP_PRATIO (10)
 
 typedef struct	s_my_framebuffer
 {
@@ -74,10 +75,12 @@ typedef struct		s_win_dep
   sfEvent		ev;
 }			t_win_dep;
 
-typedef	struct	s_event_fct
+typedef	struct	s_evt_move_fct
 {
-  unsigned	type;
+  sfKeyCode	type;
   int		(*fct)(t_win_dep *win);
+  float		x_axis;
+  float		y_axis;
 }		t_event_fct;
 
 typedef struct	s_wolf
