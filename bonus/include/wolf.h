@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 19 12:49:52 2016 Benjamin Viguier
-** Last update Sat Jan  7 17:00:49 2017 Benjamin Viguier
+** Last update Tue Jan 10 16:34:46 2017 Benjamin Viguier
 */
 
 #ifndef WOLF_H_
@@ -70,27 +70,28 @@ typedef struct		s_win_dep
   t_fb			*buffer;
   sfSprite		*sprite;
   t_ray			*ray_buffer;
-  float			a_dir;
-  sfVector2f		dep_vec;
-  sfEvent		ev;
+  int			close;
 }			t_win_dep;
-
-typedef	struct	s_evt_move_fct
-{
-  sfKeyCode	type;
-  int		(*fct)(t_win_dep *win);
-  float		x_axis;
-  float		y_axis;
-}		t_event_fct;
 
 typedef struct	s_wolf
 {
   sfVector2f	player;
+  float		a_dir;
+  sfVector2f	dep_vec;
   float		dir;
   int		fov;
   float		dpp;
   t_map		*map;
 }		t_wolf;
+
+typedef	struct	s_move_event
+{
+  sfKeyCode	key;
+  float		x_axis;
+  float		y_axis;
+  float		angle;
+  int		(*fct)(t_win_dep *, t_wolf *); 
+}		t_move_event;
 
 /*
 ** Wolf functions
@@ -132,9 +133,14 @@ void		get_ray_projections(t_wolf *map, t_ray *buffer,
 /*
 ** Event Functions
 */
-int	event(t_win_dep *win, int *first);
-int	close_evt(t_win_dep *win);
-int	keypress_evt(t_win_dep *win);
+void	event(t_win_dep *win, t_wolf *wolf);
+int	close_evt(t_win_dep *win, t_wolf *wolf);
+
+/*
+** Resize Functions
+*/
+int	resize_window(t_win_dep *win, t_wolf *wolf, int w, int h);
+void	calculate_pp(t_win_dep *win, t_wolf *wolf);
 
 /*
 ** Utils

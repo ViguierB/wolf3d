@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Tue Dec 20 16:18:08 2016 Benjamin Viguier
-** Last update Sat Jan  7 13:34:07 2017 Benjamin Viguier
+** Last update Tue Jan 10 16:16:48 2017 Benjamin Viguier
 */
 
 #include <SFML/Window/Event.h>
@@ -16,8 +16,7 @@ int	init_win_dep(t_win_dep *win, char *win_title, int w, int h)
 {
   win->w = w;
   win->h = h;
-  win->a_dir = 90.0;
-  win->dep_vec = (sfVector2f){0};
+  win->close = 0;
   win->sprite = sfSprite_create();
   win->tex = sfTexture_create(w, h);
   win->buffer = init_fb(w, h);
@@ -57,13 +56,14 @@ void	on_loop(t_win_dep *win, t_wolf *map)
   int		i;
   sfVector2f	tmp;
 
-  if (win->dep_vec.y != 0.0)
+  if (map->dep_vec.x != 0.f || map->dep_vec.y != 0.f)
     {
       tmp = map->player;
-      map->player = move_forward(map->player, win->a_dir, win->dep_vec.y);
+      map->player = move_forward(map->player, map->a_dir, map->dep_vec.y);
+      map->player = move_forward(map->player, map->a_dir + 90.0, map->dep_vec.x);
       if (map->map->map[(int) map->player.y][(int) map->player.x] > 0)
 	map->player = tmp;
-      win->dep_vec.y = 0.0;
+      map->dep_vec = (sfVector2f) {0};
     }
   draw_floor(win->buffer);
   get_ray_projections(map, win->ray_buffer, win);
@@ -81,15 +81,14 @@ void	on_loop(t_win_dep *win, t_wolf *map)
 int		wolf(t_wolf *map)
 {
   t_win_dep	win;
-  int		first;
 
   if (init_win_dep(&win, "Wolf3d", 1280, 720) < 0)
     return (-1);
-  map->dpp = (win.w / 2) / tan(GET_RADIAN(map->fov / 2));
-  first = 1;
-  while (event(&win, &first))
+  calculate_pp(&win, map);
+  while (!win.close)
     {
       clear_fb(win.buffer);
+      event(&win, map);
       on_loop(&win, map);
       sfRenderWindow_clear(win.win, sfBlack);
       sfTexture_updateFromPixels(win.tex, win.buffer->pixels,

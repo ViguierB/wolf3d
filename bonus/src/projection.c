@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 26 18:52:59 2016 Benjamin Viguier
-** Last update Sat Jan  7 13:12:57 2017 Benjamin Viguier
+** Last update Tue Jan 10 15:11:12 2017 Benjamin Viguier
 */
 
 #include <math.h>
@@ -34,7 +34,7 @@ void		get_ray_projections(t_wolf *map, t_ray *buffer,
   while (i < win->w)
     {
       a_proj = ((map->fov * i) / (float) win->w) - (map->fov / 2.0);
-      dir = add_angles(win->a_dir, a_proj);
+      dir = add_angles(map->a_dir, a_proj);
       raycast(buffer + i, map->player, dir, map->map->map);
       buffer[i].len *= cos(ABS(GET_RADIAN(a_proj)));
       buffer[i].line.x = i;
