@@ -5,7 +5,7 @@
 ## Login   <benjamin.viguier@epitech.eu>
 ## 
 ## Started on  Wed Dec  7 12:45:32 2016 Benjamin Viguier
-## Last update Tue Jan 10 16:17:17 2017 Benjamin Viguier
+## Last update Tue Jan 10 17:17:47 2017 Benjamin Viguier
 ##
 
 include $(shell pwd)/include/depend.mk
@@ -19,9 +19,9 @@ SRC	= 	src/my_draw_line.c	\
 		src/map.c		\
 		src/wolf.c		\
 		src/event.c		\
+		src/evt_fcts.c		\
 		src/error.c		\
 		src/dist_effect.c	\
-		src/resize_window.c	\
 		src/main.c
 
 CFLAGS	+=	-I./include/

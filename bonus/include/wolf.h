@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 19 12:49:52 2016 Benjamin Viguier
-** Last update Tue Jan 10 16:34:46 2017 Benjamin Viguier
+** Last update Tue Jan 10 17:30:58 2017 Benjamin Viguier
 */
 
 #ifndef WOLF_H_
@@ -28,6 +28,8 @@
 # define BUF_SIZE (4096)
 # define RENDER_DIST (50.0)
 # define MINI_MAP_PRATIO (10)
+# define MIN_FOV (30)
+# define MAX_FOV (160)
 
 typedef struct	s_my_framebuffer
 {
@@ -115,6 +117,7 @@ sfRenderWindow
 	*create_window(char *str, int w, int h);
 t_my_framebuffer
 	*init_fb(int w, int h);
+void	free_fb(t_my_framebuffer *to_free);
 void	clear_fb(t_my_framebuffer *fb);
 void	my_draw_vertical_line(t_my_framebuffer *fb, sfVector2i f,
 			      int len, sfColor color);
@@ -134,12 +137,10 @@ void		get_ray_projections(t_wolf *map, t_ray *buffer,
 ** Event Functions
 */
 void	event(t_win_dep *win, t_wolf *wolf);
+int	run_keypressed(t_win_dep *win, t_wolf *wolf);
 int	close_evt(t_win_dep *win, t_wolf *wolf);
-
-/*
-** Resize Functions
-*/
-int	resize_window(t_win_dep *win, t_wolf *wolf, int w, int h);
+int	decr_fov(t_win_dep *win, t_wolf *wolf);
+int	incr_fov(t_win_dep *win, t_wolf *wolf);
 void	calculate_pp(t_win_dep *win, t_wolf *wolf);
 
 /*

@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Fri Nov 18 11:16:08 2016 Benjamin Viguier
-** Last update Tue Jan 10 16:51:23 2017 Benjamin Viguier
+** Last update Tue Jan 10 17:04:44 2017 Benjamin Viguier
 */
 
 #include "wolf.h"
@@ -41,6 +41,12 @@ sfRenderWindow		*create_window(char *str, int w, int h)
   return (res);
 }
 
+void	free_fb(t_my_framebuffer *to_free)
+{
+  free(to_free->pixels);
+  free(to_free);
+}
+
 t_my_framebuffer	*init_fb(int w, int h)
 {
   int			i;
@@ -49,10 +55,10 @@ t_my_framebuffer	*init_fb(int w, int h)
   t_my_framebuffer	*fb;
 
   array_len = 4 * w * h + 1;
-  fb = malloc(sizeof(t_my_framebuffer));
   res = malloc(sizeof(sfUint8) * array_len);
+  fb = malloc(sizeof(t_my_framebuffer));
   if (!res || !fb)
-    return (NULL);
+    return ((void*) 0);
   i = 0;
   while (i < array_len)
     {
