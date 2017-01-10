@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Tue Jan 10 16:01:46 2017 Benjamin Viguier
-** Last update Tue Jan 10 16:50:23 2017 Benjamin Viguier
+** Last update Tue Jan 10 16:53:13 2017 Benjamin Viguier
 */
 
 #include <stdlib.h>
@@ -18,7 +18,7 @@ void	calculate_pp(t_win_dep *win, t_wolf *wolf)
 
 int	resize_window(t_win_dep *win, t_wolf *wolf, int w, int h)
 {
-  free(win->buffer->pixels);
+  free(win->buffer.pixels);
   free(win->buffer);
   free(win->ray_buffer);
   //win->w = w;
