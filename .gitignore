@@ -13,4 +13,4 @@ wolf3d
 tests/
 
 //Map files
-*.w
+//*.w
