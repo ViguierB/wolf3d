@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 19 12:49:52 2016 Benjamin Viguier
-** Last update Tue Jan 10 17:30:58 2017 Benjamin Viguier
+** Last update Wed Jan 11 16:42:28 2017 Benjamin Viguier
 */
 
 #ifndef WOLF_H_
@@ -15,6 +15,7 @@
 # include <unistd.h>
 # include <math.h>
 # include "libmy.h"
+# include "params.h"
 
 # define ABS(x) (((x) < 0) ? -(x) : (x))
 # define IS_IN(nbr, x, y) (((nbr) >= (x)) && ((nbr) <= (y)))
@@ -26,9 +27,9 @@
 # define BLK (1)
 # define FBLK ((float) BLK)
 # define BUF_SIZE (4096)
-# define RENDER_DIST (50.0)
+# define RENDER_DIST (50.f)
 # define MINI_MAP_PRATIO (10)
-# define MIN_FOV (30)
+# define MIN_FOV (5)
 # define MAX_FOV (160)
 
 typedef struct	s_my_framebuffer
@@ -84,6 +85,7 @@ typedef struct	s_wolf
   int		fov;
   float		dpp;
   t_map		*map;
+  t_params	*parms;
 }		t_wolf;
 
 typedef	struct	s_move_event
@@ -98,7 +100,9 @@ typedef	struct	s_move_event
 /*
 ** Wolf functions
 */
-int	wolf(t_wolf *map);
+int	wolf(t_win_dep *win, t_wolf *map);
+int	init_win_dep(t_win_dep *win, char *win_title,
+		     int w, int h);
 
 /*
 ** Map functions
@@ -148,4 +152,6 @@ void	calculate_pp(t_win_dep *win, t_wolf *wolf);
 */
 sfColor	get_color_by_ray(t_ray *ray);
 int	inter(int x, int min, int max, int check_type);
+int	read_to_end(char *file, char **res);
+
 #endif /* !WOLF_H_ */

@@ -5,22 +5,11 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 19 14:16:05 2016 Benjamin Viguier
-** Last update Tue Jan 10 17:51:02 2017 Benjamin Viguier
+** Last update Wed Jan 11 16:55:17 2017 Benjamin Viguier
 */
 
 #include "wolf.h"
-
-int	print_usage(void)
-{
-  my_printf("Usage :\n"
-	    "\t./wolf3d map\n\n"
-	    "\tAn exemple of map (cat map) :\n"
-	    "\t\t1111111\n"
-	    "\t\t1000001\n"
-	    "\t\t1002001\n"
-	    "\t\t1111111\n");
-  return (0);
-}
+#include "params.h"
 
 sfVector2f	get_player_pos(t_wolf *wolf)
 {
@@ -50,24 +39,38 @@ sfVector2f	get_player_pos(t_wolf *wolf)
   return (res);
 }
 
+int	init_wolf_struct(t_wolf *wol, t_map *map, t_params *parms)
+{
+  wol->map = map;
+  wol->player = get_player_pos(wol);
+  wol->a_dir = parms->a_dir;
+  wol->dep_vec = (sfVector2f){0};
+  wol->fov = parms->fov;
+  wol->parms = parms;
+  return (0);
+}
+
 int		main(int ac, char **av)
 {
   int		open_res;
   t_map		map;
   t_wolf	wol;
+  t_win_dep	win;
+  t_params	parms;
 
-  if (ac < 2 || my_strcmp(av[1], "-h") == 0)
-    return (print_usage());
-  open_res = open_map(av[1], &map);
+  if (ac < 2)
+    return (print_usage(NULL, NULL));
+  init_params(&parms);
+  if (verif_params(&parms, ac - 1, av + 1) < 0)
+    return (on_error(-1, NULL));
+  open_res = open_map(parms.map_file, &map);
   if (open_res < 0 && open_res == -2)
-    on_error(open_res, av[1]);
+    return (on_error(open_res, av[1]));
   else if (open_res < 0)
-    on_error(open_res, NULL);
-  wol.map = &map;
-  wol.player = get_player_pos(&wol);
-  wol.a_dir = 90.0;
-  wol.dep_vec = (sfVector2f){0};
-  wol.fov = 66;
-  wolf(&wol);
+    return (on_error(open_res, NULL));
+  init_wolf_struct(&wol, &map, &parms);
+  if (init_win_dep(&win, "Wolf3d", parms.win_w, parms.win_h) < 0)
+    return (on_error(-1, NULL));
+  wolf(&win, &wol);
   return (0);
 }

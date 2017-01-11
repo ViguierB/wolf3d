@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Tue Dec 20 16:18:08 2016 Benjamin Viguier
-** Last update Tue Jan 10 16:16:48 2017 Benjamin Viguier
+** Last update Wed Jan 11 15:16:21 2017 Benjamin Viguier
 */
 
 #include <SFML/Window/Event.h>
@@ -78,23 +78,18 @@ void	on_loop(t_win_dep *win, t_wolf *map)
     }
 }
 
-int		wolf(t_wolf *map)
+int		wolf(t_win_dep *win, t_wolf *map)
 {
-  t_win_dep	win;
-
-  if (init_win_dep(&win, "Wolf3d", 1280, 720) < 0)
-    return (-1);
-  calculate_pp(&win, map);
-  while (!win.close)
+  calculate_pp(win, map);
+  while (!win->close)
     {
-      clear_fb(win.buffer);
-      event(&win, map);
-      on_loop(&win, map);
-      sfRenderWindow_clear(win.win, sfBlack);
-      sfTexture_updateFromPixels(win.tex, win.buffer->pixels,
-				 win.w, win.h, 0, 0);
-      sfRenderWindow_drawSprite(win.win, win.sprite, NULL);
-      sfRenderWindow_display(win.win);
+      clear_fb(win->buffer);
+      on_loop(win, map);
+      event(win, map);
+      sfTexture_updateFromPixels(win->tex, win->buffer->pixels,
+				 win->w, win->h, 0, 0);
+      sfRenderWindow_drawSprite(win->win, win->sprite, NULL);
+      sfRenderWindow_display(win->win);
     }
   return (0);
 }
