@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 19 12:49:52 2016 Benjamin Viguier
-** Last update Wed Jan 11 16:42:28 2017 Benjamin Viguier
+** Last update Wed Jan 11 17:14:53 2017 Benjamin Viguier
 */
 
 #ifndef WOLF_H_
@@ -26,7 +26,7 @@
 # define IDEB(x) my_printf("%d\n", x);
 # define BLK (1)
 # define FBLK ((float) BLK)
-# define BUF_SIZE (4096)
+# define BUF_SIZE (1024)
 # define RENDER_DIST (50.f)
 # define MINI_MAP_PRATIO (10)
 # define MIN_FOV (5)
