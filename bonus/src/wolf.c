@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Tue Dec 20 16:18:08 2016 Benjamin Viguier
-** Last update Wed Jan 11 15:16:21 2017 Benjamin Viguier
+** Last update Sun Jan 15 19:43:52 2017 Benjamin Viguier
 */
 
 #include <SFML/Window/Event.h>
@@ -35,7 +35,7 @@ void	draw_floor(t_fb *fb)
   int	x;
   int	y;
 
-  y = 0; 
+  y = 0;
   while (y < fb->height)
     {
       x = 0;
@@ -60,7 +60,8 @@ void	on_loop(t_win_dep *win, t_wolf *map)
     {
       tmp = map->player;
       map->player = move_forward(map->player, map->a_dir, map->dep_vec.y);
-      map->player = move_forward(map->player, map->a_dir + 90.0, map->dep_vec.x);
+      map->player = move_forward(map->player, map->a_dir + 90.0,
+				 map->dep_vec.x);
       if (map->map->map[(int) map->player.y][(int) map->player.x] > 0)
 	map->player = tmp;
       map->dep_vec = (sfVector2f) {0};

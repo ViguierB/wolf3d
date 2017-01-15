@@ -5,7 +5,7 @@
 ** Login   <benjamin.viguier@epitech.eu>
 ** 
 ** Started on  Mon Dec 19 11:14:49 2016 Benjamin Viguier
-** Last update Sat Jan  7 13:13:55 2017 Benjamin Viguier
+** Last update Sun Jan 15 19:43:13 2017 Benjamin Viguier
 */
 
 #include <math.h>
@@ -98,15 +98,17 @@ void		raycast(t_ray *ray, sfVector2f pos,
   direction = (direction * M_PI) / 180;
   map_pos = (sfVector2i){(int) pos.x, (int) pos.y};
   ray_dir = (sfVector2f){cos(direction), sin(direction)};
-  ray->delta_dist.x = sqrt(1.0 + (ray_dir.y * ray_dir.y) / (ray_dir.x * ray_dir.x));
-  ray->delta_dist.y = sqrt(1.0 + (ray_dir.x * ray_dir.x) / (ray_dir.y * ray_dir.y));
+  ray->delta_dist.x = sqrt(1.0 + (ray_dir.y * ray_dir.y) /
+			   (ray_dir.x * ray_dir.x));
+  ray->delta_dist.y = sqrt(1.0 + (ray_dir.x * ray_dir.x) /
+			   (ray_dir.y * ray_dir.y));
   step =
     init_side_and_step((sfVector2f*[])
 		       {&pos, &(ray->delta_dist), &ray_dir, &side_dist},
 		       &map_pos);
   ray->side = casting((sfVector2f*[]) {&side_dist, &(ray->delta_dist)},
-		 (sfVector2i*[]) {&map_pos, &step},
-		 map, ray);
+		      (sfVector2i*[]) {&map_pos, &step},
+		      map, ray);
   if (!ray->side)
     ray->len = (map_pos.x - pos.x + (1.0 - step.x) / 2.0) / ray_dir.x;
   else
