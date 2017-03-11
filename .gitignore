@@ -7,7 +7,6 @@
 //Binary Files
 *.a
 *.o
-wolf3d
 
 //Tests Directory
 tests/
